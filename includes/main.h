@@ -6,6 +6,6 @@
 
 #include "error.h"
 #include "file.h"
-#include "lexer.h"
+#include "parser.h"
 
 #endif // CPILER_MAIN_H

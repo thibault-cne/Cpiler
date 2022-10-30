@@ -1,33 +1,33 @@
 /* ************************************************************************************************************ */
 /*                                                                                                              */
 /*                                                                                                              */
-// lexer.c
+// parser.c
 /*                                                                                                              */
 // by Thibault Cheneviere : thibault.cheneviere@telecomnancy.eu
 /*                                                                                                              */
-// Created : 2022/10/30 16/43/10
+// Created : 2022/10/30 17/04/53
 /*                                                                                                              */
 /*                                                                                                              */
 /* ************************************************************************************************************ */
 
-#include "../includes/lexer.h"
+#include "../includes/parser.h"
 
-const char *whitespaces = " \r\n";
-const char *delimiters = " \r\n";
-
-void lex(Error *err, char *source, char **beg, char **end)
+void parse_expr(Error *err, char *source)
 {
-    (void)beg;
-    (void)end;
+    char *beg;
+    char *end;
 
-    if (!source || !beg || !end)
+    beg = source;
+    end = source;
+
+    while (err->type == ERROR_NONE)
     {
-        ERROR_PREP(*err, ERROR_ARGUMENTS, "Can not lex empty content.")
-        return;
-    }
+        lex(err, end, &beg, &end);
+        printf("Lexed : %.*s\n", (int)(end - beg), beg);
 
-    *beg = source;
-    *beg += strspn(*beg, whitespaces);
-    *end = *beg;
-    *end += strcspn(*beg, delimiters);
+        if (beg == end)
+        {
+            break;
+        }
+    }
 }

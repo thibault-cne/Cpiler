@@ -23,17 +23,17 @@ int main(int argc, char **argv)
     char *content;
     Error err;
 
+    err = ok;
     content = read_file(argv[1]);
 
     if (content)
     {
         printf("%s\n", content);
+        parse_expr(&err, content);
+        print_error(err);
+
         free(content);
     }
-
-    err = lex(NULL, NULL, NULL);
-
-    print_error(err);
 
     return 0;
 }
