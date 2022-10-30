@@ -1,39 +1,29 @@
 /* ************************************************************************************************************ */
 /*                                                                                                              */
 /*                                                                                                              */
-// main.c
+// lexer.c
 /*                                                                                                              */
 // by Thibault Cheneviere : thibault.cheneviere@telecomnancy.eu
 /*                                                                                                              */
-// Created : 2022/10/30 15/45/11
+// Created : 2022/10/30 16/43/10
 /*                                                                                                              */
 /*                                                                                                              */
 /* ************************************************************************************************************ */
 
-#include "../includes/main.h"
+#include "../includes/lexer.h"
 
-int main(int argc, char **argv)
+Error lex(char *source, char **beg, char **end)
 {
-    if (argc < 2)
-    {
-        printf("Usage: %s <file>\n", argv[0]);
-        return 1;
-    }
-
-    char *content;
     Error err;
+    (void)beg;
+    (void)end;
 
-    content = read_file(argv[1]);
-
-    if (content)
+    err = ok;
+    if (!source)
     {
-        printf("%s\n", content);
-        free(content);
+        ERROR_PREP(err, ERROR_ARGUMENTS, "Can not lex empty content.")
+        return err;
     }
 
-    err = lex(NULL, NULL, NULL);
-
-    print_error(err);
-
-    return 0;
+    return err;
 }

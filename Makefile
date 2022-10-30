@@ -1,5 +1,7 @@
 FILES 	=	main.c		\
 			file.c		\
+			error.c		\
+			lexer.c		\
 
 S_PATH	=	srcs/
 O_PATH	=	objs/

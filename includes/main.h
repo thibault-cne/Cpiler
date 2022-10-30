@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "error.h"
 #include "file.h"
+#include "lexer.h"
 
 #endif // CPILER_MAIN_H

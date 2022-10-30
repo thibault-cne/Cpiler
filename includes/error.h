@@ -1,6 +1,8 @@
 #ifndef CPILER_ERROR_H
 #define CPILER_ERROR_H
 
+#include <stdlib.h>
+#include <stdio.h>
 typedef struct Error
 {
     enum ErrorType
@@ -15,5 +17,13 @@ typedef struct Error
     } type;
     char *msg;
 } Error;
+
+void print_error(Error err);
+
+extern Error ok;
+
+#define ERROR_PREP(n, t, message) \
+    (n).type = (t);               \
+    (n).msg = (message);
 
 #endif // CPILER_ERROR_H
