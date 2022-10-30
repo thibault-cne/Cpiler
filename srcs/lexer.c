@@ -13,7 +13,7 @@
 #include "../includes/lexer.h"
 
 const char *whitespaces = " \r\n";
-const char *delimiters = " \r\n";
+const char *delimiters = " \r\n(),:";
 
 void lex(Error *err, char *source, char **beg, char **end)
 {
@@ -29,5 +29,16 @@ void lex(Error *err, char *source, char **beg, char **end)
     *beg = source;
     *beg += strspn(*beg, whitespaces);
     *end = *beg;
+
+    if (**beg == '\0')
+    {
+        return;
+    }
+
     *end += strcspn(*beg, delimiters);
+
+    if (*end == *beg)
+    {
+        *end += 1;
+    }
 }

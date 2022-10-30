@@ -3,9 +3,9 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-typedef struct Error
+typedef struct _Error
 {
-    enum ErrorType
+    enum _ErrorType
     {
         ERROR_NONE = 0,
         ERROR_ARGUMENTS,
