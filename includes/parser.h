@@ -3,6 +3,7 @@
 
 #include "error.h"
 #include "lexer.h"
+#include "token.h"
 
 void parse_expr(Error *err, char *source);
 

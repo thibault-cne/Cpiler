@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 
     if (content)
     {
-        printf("%s\n", content);
+        printf(":---:\n%s\n:---:\n", content);
         parse_expr(&err, content);
         print_error(err);
 

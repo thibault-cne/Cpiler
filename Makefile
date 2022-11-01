@@ -3,6 +3,7 @@ FILES 	=	main.c		\
 			error.c		\
 			lexer.c		\
 			parser.c	\
+			token.c		\
 
 S_PATH	=	srcs/
 O_PATH	=	objs/

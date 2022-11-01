@@ -1,55 +1,43 @@
 /* ************************************************************************************************************ */
 /*                                                                                                              */
 /*                                                                                                              */
-// parser.c
+// token.c
 /*                                                                                                              */
 // by Thibault Cheneviere : thibault.cheneviere@telecomnancy.eu
 /*                                                                                                              */
-// Created : 2022/10/30 17/04/53
+// Created : 2022/11/01 15/26/42
 /*                                                                                                              */
 /*                                                                                                              */
 /* ************************************************************************************************************ */
 
-#include "../includes/parser.h"
+#include "../includes/token.h"
 
-void parse_expr(Error *err, char *source)
+token *create_token()
 {
-    token *tokens;
-    token *token_it;
-    token *current_token;
+    token *new_token;
 
-    tokens = NULL;
-    token_it = tokens;
-    current_token = create_token();
+    new_token = malloc(sizeof(token));
+    memset(new_token, 0, sizeof(token));
+    return new_token;
+}
 
-    current_token->beggining = source;
-    current_token->end = source;
-
-    while (err->type == ERROR_NONE)
+void display_tokens(token *tokens)
+{
+    while (tokens)
     {
-        lex(err, current_token->end, current_token);
-
-        if (current_token->beggining == current_token->end)
-        {
-            break;
-        }
-
-        if (tokens)
-        {
-            token_it->next = create_token();
-            memcpy(token_it->next, current_token, sizeof(token));
-            token_it = token_it->next;
-        }
-        else
-        {
-            tokens = create_token();
-            memcpy(tokens, current_token, sizeof(token));
-            token_it = tokens;
-        }
+        printf("Token : %.*s\n", (int)(tokens->end - tokens->beggining), tokens->beggining);
+        tokens = tokens->next;
     }
+}
 
-    display_tokens(tokens);
+void destroy_tokens(token *tokens)
+{
+    token *next_token;
 
-    destroy_tokens(tokens);
-    destroy_tokens(current_token);
+    while (tokens)
+    {
+        next_token = tokens->next;
+        free(tokens);
+        tokens = next_token;
+    }
 }

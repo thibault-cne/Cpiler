@@ -15,30 +15,27 @@
 const char *whitespaces = " \r\n";
 const char *delimiters = " \r\n(),:";
 
-void lex(Error *err, char *source, char **beg, char **end)
+void lex(Error *err, char *source, token *ct)
 {
-    (void)beg;
-    (void)end;
-
-    if (!source || !beg || !end)
+    if (!source || !ct)
     {
         ERROR_PREP(*err, ERROR_ARGUMENTS, "Can not lex empty content.")
         return;
     }
 
-    *beg = source;
-    *beg += strspn(*beg, whitespaces);
-    *end = *beg;
+    ct->beggining = source;
+    ct->beggining += strspn(ct->beggining, whitespaces);
+    ct->end = ct->beggining;
 
-    if (**beg == '\0')
+    if (*ct->beggining == '\0')
     {
         return;
     }
 
-    *end += strcspn(*beg, delimiters);
+    ct->end += strcspn(ct->beggining, delimiters);
 
-    if (*end == *beg)
+    if (ct->end == ct->beggining)
     {
-        *end += 1;
+        ct->end++;
     }
 }

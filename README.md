@@ -7,8 +7,9 @@ Cpiler is a project to compile an new language.
 - [x] Read the content of a file given in argument
 - [x] Raise error if the file can not be read
 - [x] Lex the content of the file
-- [ ] Parse the content of the file into tokens
+- [x] Parse the content of the file into tokens
 - [ ] Create an AST from the parsed tokens
+- [ ] Convert the AST into assembly or C or binary code.
 
 ## Licence
 
